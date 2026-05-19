@@ -12,14 +12,14 @@ router.delete("/:id", async (req, res) => {
   const coursesCollection = DB.collection("courses");
   const studentResult =await studentsCollection.findOne({_id:new ObjectId(studentId)})
   if(!studentResult){
-    res.send({message:"student Not available"})
+  return  res.send({message:"student Not available"})
   }
   const courseId=studentResult.courseId;
   const deptId=studentResult.deptId
 const depRes=await DepartmentCollection.deleteOne({_id:new ObjectId(deptId)})
 const courseRes=await coursesCollection.deleteOne({_id:new ObjectId(courseId)})
 const StudentRes=await studentsCollection.deleteOne({_id:new ObjectId(studentId)})
-res.send(depRes,courseRes,StudentRes)
+res.send({depRes,courseRes,StudentRes})
 });
 
 
