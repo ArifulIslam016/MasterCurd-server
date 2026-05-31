@@ -4,7 +4,6 @@ const { ObjectId } = require("mongodb");
 
 router.delete("/:id", async (req, res) => {
   const studentId = req.params.id;
-// console.log(studentId)
   const DB = req.dbclient;
 
   const studentsCollection = DB.collection("students");
